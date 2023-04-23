@@ -1,0 +1,22 @@
+header {
+    height: 5em;
+    margin-top: -1.5em;
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+    background-color: aqua;
+}
+
+h1 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 24em;
+}
+
+body {
+    background-image: url("img/wood-texture_(104).jpg");
+}
+
+a {
+    text-decoration: none;
+    font-size: large;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Подача заявлений</title>
+</head>
+<body>
+    <header>
+        <h1>Онлайн-форма подачи заявления в ГБ ПОУ ТУ ЭТТ</h1>
+    </header>
+    <form enctype="multipart/form-data" action="handler.php" method="POST">
+        <table>
+            <tr>
+                <td><strong>Фамилия (обязательно)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="secondName" pattern="[А-ЯЁ]{1}[а-яё]+" title="Введите фамилию на русском языке с большой буквы" required class="nabor" oninput="myFunction()"></td>
+            </tr>
+            <tr>
+                <td><strong>Имя (обязательно)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="name" pattern="[А-ЯЁ]{1}[а-яё]+" title="Введите имя на русском языке с большой буквы" required class="nabor" oninput="myFunction()"></td>
+            </tr>
+            <tr>
+                <td><strong>Отчество (необязательно)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="patronymic" pattern="[А-ЯЁ]{1}[а-яё]+" title="Введите отчество на русском языке с большой буквы" class="nabor" oninput="myFunction()"></td>
+            </tr>
+            <tr>
+                <td><strong>Город</strong></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="city"></td>
+            </tr>
+            <tr>
+                <td><strong>Школа</strong></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="school"></td>
+            </tr>
+            <tr>
+                <td><strong>Дата рождения</strong></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="dateOfBirth" required></td>
+            </tr>
+            <tr>
+                <td><strong>Телефон (формат +7(956)-986-87-11)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="tel" name="phone" pattern="\+([0-9]{1,3})(\([0-9]{2,3}\))-([0-9]{3})-([0-9]{2})-([0-9]{2})" class="nabor" oninput="myFunction()"></td>
+            </tr>
+            <tr>
+                <td><strong>Паспорт (изображение или pdf-документ)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="file" accept="image/*,.pdf" name="pass1" required></td>
+            </tr>
+            <tr>
+                <td><strong>Паспорт (прописка) (изображение или pdf-документ)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="file" accept="image/*,.pdf" name="pass2" required></td>
+            </tr>
+            <tr>
+                <td><strong>Аттестат (изображение или pdf-документ)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="file" accept="image/*,.pdf" name="certificate" required></td>
+            </tr>
+            <tr>
+                <td><strong>Приложение к аттестату (изображение или pdf-документ)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="file" accept="image/*,.pdf" name="appOfCer" required></td>
+            </tr>
+            <tr>
+                <td><strong>Заявление (1 стр.) (изображение или pdf-документ)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="file" accept="image/*,.pdf" name="claim1" required></td>
+            </tr>
+            <tr>
+                <td><strong>Заявление (2 стр) (изображение или pdf-документ)</strong></td>
+            </tr>
+            <tr>
+                <td><input type="file" accept="image/*,.pdf" name="claim2" required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="formSubmit"></td>
+            </tr>
+
+        </table>
+    </form>
+    <p>
+        <strong>
+            ОРИГИНАЛЫ ДОКУМЕНТОВ ПРЕДОСТАВИТЬ:<br> ОЧНОЕ ОБУЧЕНИЕ &mdash; ДО 15.08.2023,<br> ЗАОЧНОЕ ОБУЧЕНИЕ
+            &mdash; ДО 15.09.2023
+        </strong>
+    </p>
+    <p>
+        <strong><a href="tel:83847435545">8(38474)-3-55-45 &mdash; приёмная комиссия</a></strong>
+    </p>
+    <script>
+        var vvod = document.getElementsByClassName('nabor');
+        function myFunction() {
+            for (var i = 0; i < vvod.length; i++) {
+            if (vvod[i].value == "") {
+                vvod[i].style.cssText="border: black solid 0.5px";
+            }
+            else if (vvod[i].value != "" && vvod[i].checkValidity() == false) {
+                vvod[i].style.cssText="border: red solid 3px";
+            }
+            else if (vvod[i].value != "" && vvod[i].checkValidity() == true) {
+                vvod[i].style.cssText="border: green solid 3px";
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
