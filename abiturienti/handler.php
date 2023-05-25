@@ -20,8 +20,7 @@ $passport1 = $_FILES['pass1']['tmp_name'];
 $passport2 = $_FILES['pass2']['tmp_name'];
 $certificate = $_FILES['certificate']['tmp_name'];
 $application = $_FILES['appOfCer']['tmp_name'];
-$claim1 = $_FILES['claim1']['tmp_name'];
-$claim2 = $_FILES['claim2']['tmp_name'];
+$claim = $_FILES['claim']['tmp_name'];
 $passport1_name = $_FILES['pass1']['name'];
 $ext_pass1 = pathinfo($passport1_name, PATHINFO_EXTENSION);
 $passport2_name = $_FILES['pass2']['name'];
@@ -30,10 +29,8 @@ $certificate_name = $_FILES['certificate']['name'];
 $ext_cert = pathinfo($certificate_name, PATHINFO_EXTENSION);
 $application_name = $_FILES['appOfCer']['name'];
 $ext_app = pathinfo($application_name, PATHINFO_EXTENSION);
-$claim1_name = $_FILES['claim1']['name'];
-$ext_claim1 = pathinfo($claim1_name, PATHINFO_EXTENSION);
-$claim2_name = $_FILES['claim2']['name'];
-$ext_claim2 = pathinfo($claim2_name, PATHINFO_EXTENSION);
+$claim_name = $_FILES['claim']['name'];
+$ext_claim = pathinfo($claim_name, PATHINFO_EXTENSION);
 $pip = $prezime . " " . mb_strcut($ime, 1, 2) . "." . " " . mb_strcut($patronim, 1, 2);
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 $pb = "$document_root/abitura/$pip"; //Путь сохранения изображений, при необходимости - поменять
@@ -42,8 +39,7 @@ $pass1Path = "$pb/Паспорт".'.'.$ext_pass1;
 $pass2Path = "$pb/Прописка".'.'.$ext_pass2;
 $certPath = "$pb/Аттестат".'.'.$ext_cert;
 $appPath = "$pb/Приложение к аттестату".'.'.$ext_app;
-$claim1Path = "$pb/Заявление (1 стр)".'.'.$ext_claim1;
-$claim2Path = "$pb/Заявление (2 стр)".'.'.$ext_claim2;
+$claimPath = "$pb/Заявление".'.'.$ext_claim;
 
 define('DB_NAME', 'abiturienti');
 define('DB_USER', 'root');
@@ -56,14 +52,14 @@ if(isset($_POST['formSubmit'])) { //По нажатию кнопки
     move_uploaded_file($passport2, $pass2Path); //Загрузка фото прописки
     move_uploaded_file($certificate, $certPath); //Загрузка фото аттестата
     move_uploaded_file($application, $appPath); //Загрузка фото приложения к аттестату
-    move_uploaded_file($claim1, $claim1Path); //Загрузка заявления (1 стр.)
-    move_uploaded_file($claim2, $claim2Path); //Загрузка заявления (2 стр.)
+    move_uploaded_file($claim, $claimPath); //Загрузка заявления
+
     $conn = new mysqli("localhost", "root", "", "abiturienti");
     if($conn->connect_error){
         die("Ошибка: " . $conn->connect_error);
     }
     $sql = "INSERT INTO abitura (sec_name, name, patronim, city, school, birthday, tel) VALUES ('$prezime', '$ime', '$patronim', '$grad', '$iskola', '$rodjendan', '$mobitel')";
-    $sql1 = "INSERT INTO abitura_img (pass_1, pass_2, certificate, application, claim_1, claim_2) VALUES ('$pass1Path', '$pass2Path', '$certPath', '$appPath', '$claim1Path', '$claim2Path')";
+    $sql1 = "INSERT INTO abitura_img (pass_1, pass_2, certificate, application, claim) VALUES ('$pass1Path', '$pass2Path', '$certPath', '$appPath', '$claimPath')";
     if($conn->query($sql) && $conn->query($sql1)){
         echo "Ваше заявление принято к рассмотрению!";
     } else{

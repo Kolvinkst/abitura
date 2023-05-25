@@ -24,7 +24,7 @@ $sql = "SELECT * FROM abitura INNER JOIN abitura_img ON abitura.id = abitura_img
 $result = $connection->query($sql);
 echo "<table border ='1'>";
 echo "<tr>";
-echo "<th>"."№"."</td>"."<th>"."Фамилия"."</th>"."<th>"."Имя"."</th>"."<th>"."Отчество"."</th>"."<th>"."Город"."</th>"."<th>"."Школа"."</th>"."<th>"."Дата рождения"."</th>"."<th>"."Телефон"."</th>"."<th>"."Паспорт"."</th>"."<th>"."Прописка"."</th>"."<th>"."Аттестат"."</th>"."<th>"."Приложение к аттестату"."</th>"."<th>"."Заявление (1 стр.)"."</th>"."<th>"."Заявление (2 стр.)"."</th>";
+echo "<th>"."№"."</td>"."<th>"."Фамилия"."</th>"."<th>"."Имя"."</th>"."<th>"."Отчество"."</th>"."<th>"."Город"."</th>"."<th>"."Школа"."</th>"."<th>"."Дата рождения"."</th>"."<th>"."Телефон"."</th>"."<th>"."Паспорт"."</th>"."<th>"."Прописка"."</th>"."<th>"."Аттестат"."</th>"."<th>"."Приложение к аттестату"."</th>"."<th>"."Заявление"."</th>";
 echo "</tr>";
 if ($result->num_rows > 0) {
 	while ($row1 = $result->fetch_assoc()) {
@@ -41,8 +41,7 @@ if ($result->num_rows > 0) {
 		echo "<td>".'<a href="'.$row1['pass_2'].'" target=\\"_blank\\">Смотреть</a>'."</td>";
 		echo "<td>".'<a href="'.$row1['certificate'].'" target=\\"_blank\\">Смотреть</a>'."</td>";
 		echo "<td>".'<a href="'.$row1['application'].'" target=\\"_blank\\">Смотреть</a>'."</td>";
-		echo "<td>".'<a href="'.$row1['claim_1'].'" target=\\"_blank\\">Смотреть</a>'."</td>";
-		echo "<td>".'<a href="'.$row1['claim_2'].'" target=\\"_blank\\">Смотреть</a>'."</td>";
+		echo "<td>".'<a href="'.$row1['claim'].'" target=\\"_blank\\">Смотреть</a>'."</td>";
 		echo "</tr>";
 	}
 } else {
